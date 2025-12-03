@@ -3,7 +3,7 @@ import 'shared_prefs_storage.dart';
 class Quiz {
   final List<Question> questions;
   List<Answer> answers = [];
-  double? _cachedScore; // Cache the score
+  double? _cachedScore; 
   
   Quiz({required this.questions});
   
@@ -12,7 +12,7 @@ class Quiz {
   }
 
   double calculateScore() {
-    // Return cached score if already calculated
+    
     if (_cachedScore != null) {
       return _cachedScore!;
     }
@@ -25,8 +25,7 @@ class Quiz {
     }
     
     _cachedScore = totalScore;
-    
-    // Save submission to shared preferences
+
     SharedPrefsStorage.saveSubmission(this);
     
     return totalScore;
@@ -34,15 +33,13 @@ class Quiz {
 
   void resetQuiz() {
     answers.clear();
-    _cachedScore = null; // Clear cached score
+    _cachedScore = null; 
   }
 
-  // Get highest score from storage
   Future<double> get highestScore async {
     return await SharedPrefsStorage.getHighestScore();
   }
-  
-  // Get submission history from storage
+
   Future<List<Map<String, dynamic>>> getSubmissionHistory() async {
     return await SharedPrefsStorage.loadSubmissions();
   }

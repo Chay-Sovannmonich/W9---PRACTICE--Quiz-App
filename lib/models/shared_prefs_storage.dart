@@ -15,7 +15,6 @@ class SharedPrefsStorage {
     }
   }
 
-  // Save quiz questions
   static Future<void> saveQuestions(List<Question> questions) async {
     await _init();
     
@@ -33,7 +32,6 @@ class SharedPrefsStorage {
     print('✅ Questions saved to shared preferences');
   }
 
-  // Load quiz questions
   static Future<List<Question>> loadQuestions() async {
     await _init();
     
@@ -60,7 +58,6 @@ class SharedPrefsStorage {
     return [];
   }
 
-  // Save quiz submission
   static Future<void> saveSubmission(Quiz quiz) async {
     await _init();
     
@@ -81,8 +78,7 @@ class SharedPrefsStorage {
       'totalQuestions': quiz.questions.length,
       'correctAnswers': answers.where((a) => a.isCorrect()).length,
     };
-    
-    // Load existing submissions
+
     final existingJson = _prefs!.getString(_submissionsKey);
     List<Map<String, dynamic>> submissions = [];
     
@@ -95,16 +91,14 @@ class SharedPrefsStorage {
     }
     
     submissions.add(submission);
-    
-    // Keep only last 10 submissions
+
     if (submissions.length > 10) {
       submissions = submissions.sublist(submissions.length - 10);
     }
     
     final jsonString = jsonEncode(submissions);
     await _prefs!.setString(_submissionsKey, jsonString);
-    
-    // Update highest score
+
     final currentHighest = _prefs!.getDouble(_highestScoreKey) ?? 0.0;
     if (score > currentHighest) {
       await _prefs!.setDouble(_highestScoreKey, score);
@@ -114,7 +108,6 @@ class SharedPrefsStorage {
     print('✅ Submission saved. Score: $score');
   }
 
-  // Load all submissions
   static Future<List<Map<String, dynamic>>> loadSubmissions() async {
     await _init();
     
@@ -133,13 +126,11 @@ class SharedPrefsStorage {
     return [];
   }
 
-  // Get highest score
   static Future<double> getHighestScore() async {
     await _init();
     return _prefs!.getDouble(_highestScoreKey) ?? 0.0;
   }
 
-  // Clear all data
   static Future<void> clearAllData() async {
     await _init();
     await _prefs!.remove(_questionsKey);
@@ -148,7 +139,6 @@ class SharedPrefsStorage {
     print('🗑️ Cleared all shared preferences data');
   }
 
-  // Get all data for debugging
   static Future<Map<String, dynamic>> exportAllData() async {
     await _init();
     

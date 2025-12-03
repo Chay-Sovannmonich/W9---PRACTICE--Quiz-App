@@ -30,14 +30,14 @@ class QuestionResult extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(8),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center, // center choice row
+          mainAxisAlignment: MainAxisAlignment.center, 
           children : [
             isMatchedCorrectAnswer(index) ? const Icon(Icons.check, color: Colors.green) : const SizedBox(width: 24),
             const SizedBox(width: 10),
             Flexible(
               child: Text(
                 choice,
-                textAlign: TextAlign.center, // center text
+                textAlign: TextAlign.center, 
                 style: TextStyle(
                   fontSize: 16,
                   color: getChoiceColor(index),
@@ -54,17 +54,17 @@ class QuestionResult extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom:16),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center, // center column content
+        crossAxisAlignment: CrossAxisAlignment.center, 
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.center, // center title row
+            mainAxisAlignment: MainAxisAlignment.center, 
             children : [
               CircleNumber(number: questionNumber, color: color ),
               const SizedBox(width: 20),
               Flexible(
                 child: Text(
                   answer.question.title,
-                  textAlign: TextAlign.center, // center title text
+                  textAlign: TextAlign.center, 
                   style: const TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),

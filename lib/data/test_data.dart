@@ -22,15 +22,13 @@ List<Question> mockupQuestions = [
   ),
 ];
 
-// Initialize quiz - DON'T save questions immediately
 Quiz initializeQuiz() {
-  // Just create the quiz without saving questions
+  
   return Quiz(questions: mockupQuestions);
 }
 
 Quiz mockupQuiz = initializeQuiz();
 
-// You can save questions separately if needed
 Future<void> initializeQuestions() async {
   await SharedPrefsStorage.saveQuestions(mockupQuestions);
 }

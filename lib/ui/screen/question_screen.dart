@@ -22,8 +22,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
     setState(() {
       currentQuestionIndex++;
     });
-    
-    // Check if we should switch to result screen
+
     if (currentQuestionIndex >= widget.quiz.questions.length) {
       print('All questions answered, switching to result screen');
       widget.switchScreen();

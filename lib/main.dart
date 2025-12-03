@@ -16,10 +16,8 @@ enum AppScreen {
 }
 
 void main() async {
-  // Initialize shared preferences and questions
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Save questions to shared preferences on app start
   await SharedPrefsStorage.saveQuestions(mockupQuestions);
   
   runApp(const MyApp());
@@ -74,7 +72,6 @@ class _MyAppState extends State<MyApp> {
       home: Stack(
         children: [
           screenToShow,
-          // Add debug button to all screens except debug screen
           if (currentScreen != AppScreen.debug)
             Positioned(
               top: 40,
