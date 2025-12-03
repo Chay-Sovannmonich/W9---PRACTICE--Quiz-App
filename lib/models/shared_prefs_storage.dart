@@ -29,7 +29,7 @@ class SharedPrefsStorage {
     
     final jsonString = jsonEncode(questionsJson);
     await _prefs!.setString(_questionsKey, jsonString);
-    print('✅ Questions saved to shared preferences');
+    print('Questions saved to shared preferences');
   }
 
   static Future<List<Question>> loadQuestions() async {
@@ -39,7 +39,7 @@ class SharedPrefsStorage {
     if (jsonString != null && jsonString.isNotEmpty) {
       try {
         final List<dynamic> questionsJson = jsonDecode(jsonString);
-        print('✅ Questions loaded from shared preferences');
+        print('Questions loaded from shared preferences');
         
         return questionsJson.map((json) {
           return Question(
@@ -50,11 +50,11 @@ class SharedPrefsStorage {
           );
         }).toList();
       } catch (e) {
-        print('❌ Error parsing questions: $e');
+        print('Error parsing questions: $e');
       }
     }
     
-    print('⚠️ No saved questions found');
+    print('No saved questions found');
     return [];
   }
 
@@ -86,7 +86,7 @@ class SharedPrefsStorage {
       try {
         submissions = List<Map<String, dynamic>>.from(jsonDecode(existingJson));
       } catch (e) {
-        print('❌ Error parsing existing submissions: $e');
+        print('Error parsing existing submissions: $e');
       }
     }
     
@@ -102,10 +102,10 @@ class SharedPrefsStorage {
     final currentHighest = _prefs!.getDouble(_highestScoreKey) ?? 0.0;
     if (score > currentHighest) {
       await _prefs!.setDouble(_highestScoreKey, score);
-      print('🎉 New high score: $score');
+      print('New high score: $score');
     }
     
-    print('✅ Submission saved. Score: $score');
+    print('Submission saved. Score: $score');
   }
 
   static Future<List<Map<String, dynamic>>> loadSubmissions() async {
@@ -118,11 +118,11 @@ class SharedPrefsStorage {
         print('✅ Loaded ${submissions.length} submissions');
         return submissions;
       } catch (e) {
-        print('❌ Error parsing submissions: $e');
+        print('Error parsing submissions: $e');
       }
     }
     
-    print('⚠️ No submissions found');
+    print('No submissions found');
     return [];
   }
 
@@ -136,7 +136,7 @@ class SharedPrefsStorage {
     await _prefs!.remove(_questionsKey);
     await _prefs!.remove(_submissionsKey);
     await _prefs!.remove(_highestScoreKey);
-    print('🗑️ Cleared all shared preferences data');
+    print('Cleared all shared preferences data');
   }
 
   static Future<Map<String, dynamic>> exportAllData() async {
